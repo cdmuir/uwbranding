@@ -14,7 +14,7 @@ format:
 
 knitr:
   opts_chunk:
-    dev: cairo_pdf
+    dev: ragg_png
 
 execute:
   echo: false
