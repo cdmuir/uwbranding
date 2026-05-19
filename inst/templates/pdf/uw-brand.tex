@@ -20,6 +20,11 @@
 % ------------------------------------------------------------
 \usepackage{xcolor}
 \usepackage{fontspec}       % XeLaTeX font loading
+% Restore \paragraph to its original definition before titlesec loads.
+% Quarto wraps \paragraph in its preamble; titlesec's \ttl@extract then
+% sees the wrong signature and errors. \oldparagraph holds Quarto's saved copy.
+\ifdefined\oldparagraph\let\paragraph\oldparagraph\fi
+\ifdefined\oldsubparagraph\let\subparagraph\oldsubparagraph\fi
 \usepackage{titlesec}       % Custom section heading styles
 \usepackage{fancyhdr}       % Headers and footers
 \usepackage{graphicx}       % Including images (icons, illustrations)
@@ -51,26 +56,25 @@
 % ------------------------------------------------------------
 % Body text: Crimson Pro (serif, optimised for long-form print)
 \setmainfont{Crimson Pro}[
-  UprightFont    = *-Regular,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic,
+  BoldFont       = * Bold,
+  ItalicFont     = * Italic,
+  BoldItalicFont = * Bold Italic,
 ]
 
 % Headings / sans-serif: Red Hat Display
 \setsansfont{Red Hat Display}[
-  UprightFont    = *-Regular,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic,
+  UprightFont    = * Regular,
+  BoldFont       = * Bold,
+  ItalicFont     = * Italic,
+  BoldItalicFont = * Bold Italic,
 ]
 
 % Small body copy / UI text: Red Hat Text
 \newfontfamily\RedHatText{Red Hat Text}[
-  UprightFont    = *-Regular,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic,
+  UprightFont    = * Regular,
+  BoldFont       = * Bold,
+  ItalicFont     = * Italic,
+  BoldItalicFont = * Bold Italic,
 ]
 
 % Monospace: unchanged (inherits Quarto/system default)
