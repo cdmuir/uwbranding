@@ -1,0 +1,77 @@
+url: https://cdmuir.github.io/uwbranding
+
+logo: man/figures/logo.png
+
+template:
+  bootstrap: 5
+  bootswatch: cosmo
+  bslib:
+    primary: "#C5050C"
+    link-color: "#9B0000"
+    navbar-bg: "#C5050C"
+    navbar-light-color: "#FFFFFF"
+    navbar-light-hover-color: "#E1E5E7"
+    navbar-light-active-color: "#FFFFFF"
+
+navbar:
+  bg: primary
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fab fa-github
+      href: https://github.com/cdmuir/uwbranding
+      aria-label: GitHub
+
+reference:
+  - title: "Brand Colors"
+    desc: "Named color vectors and lookup helpers for UW–Madison brand colors."
+    contents:
+      - uw_colors
+      - uw_color
+
+  - title: "Color Palettes"
+    desc: "Ordered palettes for light and dark backgrounds, and their palette functions."
+    contents:
+      - uw_palette_discrete
+      - uw_palette_dark
+      - uw_pal
+      - uw_pal_dark
+
+  - title: "ggplot2 Themes"
+    desc: "Complete ggplot2 themes conforming to UW–Madison brand identity."
+    contents:
+      - theme_uw
+      - theme_uw_dark
+
+  - title: "ggplot2 Scales — Light Background"
+    desc: "Discrete and continuous color/fill scales for plots on light/white backgrounds."
+    contents:
+      - scale_color_uw
+      - scale_colour_uw
+      - scale_fill_uw
+      - scale_color_uw_c
+      - scale_colour_uw_c
+      - scale_fill_uw_c
+
+  - title: "ggplot2 Scales — Dark Background"
+    desc: "Discrete and continuous color/fill scales for plots on dark backgrounds."
+    contents:
+      - scale_color_uw_dark
+      - scale_colour_uw_dark
+      - scale_fill_uw_dark
+      - scale_color_uw_dark_c
+      - scale_colour_uw_dark_c
+      - scale_fill_uw_dark_c
+
+  - title: "Quarto Templates"
+    desc: "Copy UW–Madison branded Quarto templates into a project."
+    contents:
+      - use_uw_pdf
+      - use_uw_revealjs
+      - use_uw_beamer
+
+  - title: "Package"
+    contents:
+      - uwbranding-package
