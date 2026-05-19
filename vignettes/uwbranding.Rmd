@@ -1,0 +1,304 @@
+---
+title: "Getting Started with uwbranding"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with uwbranding}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment  = "#>",
+  fig.width  = 6,
+  fig.height = 3.5,
+  out.width  = "100%"
+)
+```
+
+The **uwbranding** package provides ggplot2 themes, color palettes, and Quarto
+document templates that conform to the
+[UW–Madison brand identity](https://brand.wisc.edu/).
+
+```{r load}
+library(uwbranding)
+library(ggplot2)
+library(dplyr)
+```
+
+> **Note on fonts.** The brand themes use Crimson Pro, Red Hat Display, and Red
+> Hat Text. If these aren't installed as system fonts, ggplot2 will fall back to
+> its default — the themes will still work, but typography won't match the brand.
+> Download links are at <https://brand.wisc.edu/visual-identity/typography/>.
+
+---
+
+## Brand colors
+
+All official colors are in the named vector `uw_colors`. Use `uw_color()` to
+retrieve specific values by name.
+
+```{r colors-vector}
+uw_colors
+```
+
+```{r colors-lookup}
+uw_color("badger_red")
+uw_color("badger_red", "dark_red", "light_gray")
+```
+
+Here they are at a glance:
+
+```{r colors-swatch, fig.height = 2.8, echo = FALSE}
+swatch <- tibble::tibble(
+  name  = factor(names(uw_colors), levels = names(uw_colors)),
+  color = unname(uw_colors),
+  group = c("Primary", "Primary", "Secondary", "Secondary", "Secondary",
+            "Accent", "Accent", "Accent")
+)
+
+ggplot(swatch, aes(x = name, y = 1, fill = name)) +
+  geom_tile(color = "white", linewidth = 1.5) +
+  geom_text(aes(label = color), vjust = 3.2, size = 2.8,
+            family = "Red Hat Text", color = "white",
+            data = \(d) filter(d, name %in% c("badger_red", "dark_red",
+                                               "black", "gray_blue", "blue"))) +
+  geom_text(aes(label = color), vjust = 3.2, size = 2.8,
+            family = "Red Hat Text", color = "#444444",
+            data = \(d) filter(d, !name %in% c("badger_red", "dark_red",
+                                                "black", "gray_blue", "blue"))) +
+  scale_fill_manual(values = setNames(swatch$color, swatch$name),
+                    guide  = "none") +
+  facet_grid(. ~ group, scales = "free_x", space = "free") +
+  theme_void() +
+  theme(
+    axis.text.x     = element_text(size = 8, margin = margin(t = 2)),
+    strip.text      = element_text(face = "bold", size = 9, margin = margin(b = 4)),
+    panel.spacing.x = unit(0.6, "lines"),
+    plot.margin     = margin(4, 4, 4, 4)
+  )
+```
+
+---
+
+## Light theme
+
+`theme_uw()` is the default theme for PDF documents and light-background slides.
+It pairs Badger Red headings with a clean white panel.
+
+```{r theme-uw-scatter}
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(size = 2, alpha = 0.8) +
+  scale_color_uw(labels = c("4-wheel", "Front", "Rear")) +
+  labs(
+    title    = "Engine Displacement vs. Highway MPG",
+    subtitle = "Motor Trend Car Road Tests",
+    x        = "Displacement (L)",
+    y        = "Highway MPG",
+    color    = "Drive",
+    caption  = "Source: ggplot2::mpg"
+  ) +
+  theme_uw()
+```
+
+The `grid` argument controls which gridlines are shown (`"both"`, `"x"`, `"y"`,
+`"none"`). For bar charts, `grid = "x"` is usually cleaner.
+
+```{r theme-uw-bar, fig.height = 3.8}
+mpg |>
+  count(manufacturer) |>
+  slice_max(n, n = 10) |>
+  ggplot(aes(x = n, y = reorder(manufacturer, n))) +
+  geom_col(fill = uw_color("badger_red")) +
+  labs(title = "Top 10 Manufacturers", x = "Count", y = NULL) +
+  theme_uw(grid = "x")
+```
+
+`title_color` accepts any color name from `uw_colors` or a raw hex string —
+useful when Badger Red doesn't contrast enough against your content:
+
+```{r theme-uw-title-color, fig.height = 2.2}
+ggplot(mpg, aes(x = hwy)) +
+  geom_histogram(fill = uw_color("dark_red"), bins = 20) +
+  labs(title = "Highway MPG Distribution", x = "Highway MPG", y = "Count") +
+  theme_uw(title_color = "black")
+```
+
+---
+
+## Color scales
+
+### Discrete (light)
+
+`scale_color_uw()` and `scale_fill_uw()` apply [uw_palette_discrete] —
+ordered for visibility on white:
+
+```{r scales-discrete}
+mpg |>
+  count(manufacturer, drv) |>
+  ggplot(aes(x = n, y = reorder(manufacturer, n), fill = drv)) +
+  geom_col() +
+  scale_fill_uw(labels = c("4-wheel", "Front", "Rear")) +
+  facet_wrap(~drv, labeller = as_labeller(
+    c(`4` = "4-Wheel", f = "Front", r = "Rear")
+  )) +
+  labs(title = "Vehicles by Manufacturer & Drive Type",
+       x = "Count", y = NULL) +
+  theme_uw(grid = "x") +
+  theme(legend.position = "none")
+```
+
+### Continuous (light)
+
+`scale_fill_uw_c()` and `scale_color_uw_c()` run from UW Light Gray to
+Badger Red:
+
+```{r scales-continuous}
+ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
+  geom_tile() +
+  scale_fill_uw_c() +
+  labs(title = "Old Faithful Eruption Density",
+       x = "Waiting (min)", y = "Eruption (min)") +
+  theme_uw(grid = "none")
+```
+
+---
+
+## Dark theme
+
+`theme_uw_dark()` is designed for slides and poster panels. Two styles are
+available via the `style` argument.
+
+### `style = "black"` (default)
+
+Near-black background (`#121212`) with a Badger Red title — the most versatile
+dark option.
+
+```{r theme-dark-black}
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(size = 2.5, alpha = 0.9) +
+  scale_color_uw_dark(labels = c("4-wheel", "Front", "Rear")) +
+  labs(
+    title    = "Engine Displacement vs. Highway MPG",
+    subtitle = "Motor Trend Car Road Tests",
+    x        = "Displacement (L)",
+    y        = "Highway MPG",
+    color    = "Drive"
+  ) +
+  theme_uw_dark()
+```
+
+### `style = "red"`
+
+Badger Red background (`#C5050C`) with white text — high-impact title slides
+and poster headers.
+
+```{r theme-dark-red, fig.height = 3.8}
+mpg |>
+  count(manufacturer) |>
+  slice_max(n, n = 8) |>
+  ggplot(aes(x = n, y = reorder(manufacturer, n))) +
+  geom_col(fill = "white") +
+  labs(title = "Top Manufacturers", x = "Count", y = NULL) +
+  theme_uw_dark(style = "red", grid = "x")
+```
+
+### Continuous (dark)
+
+`scale_fill_uw_dark_c()` runs Badger Red → White, suited to dark panels:
+
+```{r scales-dark-continuous}
+ggplot(faithfuld, aes(waiting, eruptions, fill = density)) +
+  geom_tile() +
+  scale_fill_uw_dark_c() +
+  labs(title = "Old Faithful Eruption Density",
+       x = "Waiting (min)", y = "Eruption (min)") +
+  theme_uw_dark(grid = "none")
+```
+
+---
+
+## Quarto templates
+
+`use_uw_pdf()`, `use_uw_revealjs()`, and `use_uw_beamer()` copy starter
+templates into any project directory. Run them once per project, then render
+normally with `quarto render`.
+
+```{r use-templates, eval = FALSE}
+# PDF document (copies uw-brand.tex, _quarto.yml, template.qmd)
+use_uw_pdf()
+
+# RevealJS presentation (copies _uw-light.scss, _uw-dark.scss, template.qmd)
+use_uw_revealjs()
+
+# Beamer/PDF presentation (copies _uw-beamer-preamble.tex, title.tex, template.qmd)
+use_uw_beamer()
+
+# All three default to getwd(). Use path = to target a subdirectory.
+use_uw_revealjs(path = "slides")
+
+# Use overwrite = TRUE to refresh files from the package.
+use_uw_pdf(overwrite = TRUE)
+```
+
+### File inventory
+
+| Function | Files copied |
+|---|---|
+| `use_uw_pdf()` | `uw-brand.tex`, `_quarto.yml`, `template.qmd` |
+| `use_uw_revealjs()` | `_uw-light.scss`, `_uw-dark.scss`, `template.qmd` |
+| `use_uw_beamer()` | `_uw-beamer-preamble.tex`, `title.tex`, `template.qmd` |
+
+---
+
+## Switching light ↔ dark
+
+The light and dark versions of each format are designed to be toggled with
+minimal changes.
+
+### RevealJS
+
+In the YAML front matter, swap the theme line:
+
+```yaml
+# Light:
+theme: [default, _uw-light.scss]
+
+# Dark:
+theme: [default, _uw-dark.scss]
+```
+
+In the setup chunk, match the plot theme:
+
+```r
+theme_set(theme_uw(base_size = 14))       # light
+theme_set(theme_uw_dark(base_size = 14))  # dark
+```
+
+### Beamer
+
+In `_uw-beamer-preamble.tex`, flip one line:
+
+```latex
+\uwdarkfalse   % light (default)
+\uwdarktrue    % dark
+```
+
+Match the plot theme in the setup chunk (use `base_size = 9` for Beamer):
+
+```r
+theme_set(theme_uw(base_size = 9))       # light
+theme_set(theme_uw_dark(base_size = 9))  # dark
+```
+
+### Consistent plot theming across a document
+
+Set the theme once in a setup chunk so all subsequent plots inherit it:
+
+```r
+library(uwbranding)
+theme_set(theme_uw())   # or theme_uw_dark()
+```
+
+Individual plots can still override with `+ theme_uw_dark(style = "red")` etc.

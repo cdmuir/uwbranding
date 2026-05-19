@@ -1,0 +1,14 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.positai$
+# Standalone project files superseded by inst/templates/
+^_quarto\.yml$
+^uw-brand\.tex$
+^uw-brand-template\.qmd$
+^slides$
+^UW-BRAND-README\.md$
+^_output$
+# Dev tools
+^\.github$
+^doc$
+^Meta$

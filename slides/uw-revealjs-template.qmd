@@ -1,0 +1,185 @@
+---
+title: "Presentation Title"
+subtitle: "Subtitle or Course Name"
+author: "Author Name"
+institute: "University of Wisconsin–Madison"
+date: today
+date-format: "MMMM D, YYYY"
+
+format:
+  revealjs:
+    # ── Theme ──────────────────────────────────────────────────
+    # Light: white background, Badger Red headings
+    theme: [default, _uw-light.scss]
+    # Dark: near-black background, Badger Red accents
+    # theme: [default, _uw-dark.scss]
+
+    # ── Layout ─────────────────────────────────────────────────
+    slide-number: c/t        # current/total
+    progress: true
+    width: 1280
+    height: 720
+    margin: 0.08
+
+    # ── Code ───────────────────────────────────────────────────
+    highlight-style: github  # swap to 'github-dark' with dark theme
+    code-line-numbers: false
+
+    # ── Navigation ─────────────────────────────────────────────
+    controls: false
+    hash: true
+    history: true
+
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+source("../R/theme_uw.R")
+
+# Use theme_uw() for light slides, theme_uw_dark() for dark slides.
+# Set your plot theme once here so all chunks inherit it.
+# Light theme (matches _uw-light.scss):
+plot_theme <- theme_uw(base_size = 14)
+# Dark theme (matches _uw-dark.scss — uncomment and swap scss above):
+# plot_theme <- theme_uw_dark(base_size = 14)
+
+theme_set(plot_theme)
+```
+
+## Slide with bullet points
+
+- First bullet point
+- Second bullet point
+  - Indented sub-point
+  - Another sub-point
+- Third bullet point
+
+## Slide with a figure
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Caption appears below the figure."
+#| fig-width: 7
+#| fig-height: 4.2
+
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(size = 2.5, alpha = 0.85) +
+  scale_color_uw(labels = c("4-wheel", "Front", "Rear")) +
+  labs(
+    title = "Engine Displacement vs. Highway MPG",
+    x     = "Displacement (L)",
+    y     = "Highway MPG",
+    color = "Drive"
+  )
+```
+
+## Slide with two columns {.columns-2}
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+### Left column
+
+Some explanatory text, a list, or another element.
+
+- Point A
+- Point B
+- Point C
+
+:::
+
+::: {.column width="48%"}
+
+```{r}
+#| fig-width: 5
+#| fig-height: 4
+
+mpg |>
+  count(class) |>
+  ggplot(aes(x = n, y = reorder(class, n))) +
+  geom_col(fill = uw_color("badger_red")) +
+  labs(x = "Count", y = NULL)
+```
+
+:::
+
+::::
+
+## Slide with a callout box
+
+Use a `.uw-box` div for brand-styled highlights:
+
+::: {.uw-box}
+**Key takeaway** — This box uses the Badger Red border defined in the SCSS theme. It is a good place for definitions, key results, or important caveats.
+:::
+
+Or use Quarto's built-in callout blocks:
+
+::: {.callout-note}
+Standard Quarto note callout.
+:::
+
+## Slide with a table
+
+```{r}
+#| label: tbl-summary
+
+library(knitr)
+
+mpg |>
+  group_by(drv) |>
+  summarise(
+    n         = n(),
+    mean_hwy  = round(mean(hwy), 1),
+    mean_city = round(mean(cty), 1)
+  ) |>
+  mutate(drv = recode(drv, `4` = "4-wheel", f = "Front", r = "Rear")) |>
+  kable(col.names = c("Drive", "n", "Mean Hwy MPG", "Mean City MPG"))
+```
+
+## Incremental reveal {.incremental}
+
+Items appear one at a time:
+
+- First revealed
+- Then this one
+- Finally this
+
+## Slide with speaker notes
+
+Main slide content goes here.
+
+::: {.notes}
+Speaker notes are hidden from the audience. Press **S** during
+the presentation to open the speaker view. Notes can be as long
+as needed — they won't affect the slide layout.
+:::
+
+## Section divider {background-color="#C5050C" color="white"}
+
+::: {style="color: white; font-size: 1.6em; font-weight: bold;"}
+Section Title
+:::
+
+::: {style="color: rgba(255,255,255,0.8); font-size: 0.85em;"}
+Use `background-color="#C5050C"` on any slide for a Badger Red divider.
+:::
+
+## Thank you {background-color="#C5050C"}
+
+::: {style="color: white; text-align: center;"}
+
+**Author Name**
+
+Department · University of Wisconsin–Madison
+
+`author@wisc.edu`
+
+:::

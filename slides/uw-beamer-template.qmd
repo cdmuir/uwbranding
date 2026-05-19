@@ -1,0 +1,159 @@
+---
+title: "Presentation Title"
+subtitle: "Subtitle or Course Name"
+author: "Author Name"
+institute: "University of Wisconsin–Madison"
+date: today
+date-format: "MMMM D, YYYY"
+
+format:
+  beamer:
+    pdf-engine: xelatex
+    include-in-header: _uw-beamer-preamble.tex
+
+    # ── Layout ─────────────────────────────────────────────────
+    aspectratio: 169          # 16:9 (use 43 for 4:3)
+    fontsize: 11pt
+
+    # ── Code highlighting ──────────────────────────────────────
+    # 'tango' works well for light mode; 'zenburn' for dark.
+    highlight-style: tango
+
+    # ── Title page ─────────────────────────────────────────────
+    # Tells Beamer to use the uwmadison title page template
+    # defined in _uw-beamer-preamble.tex.
+    template-partials:
+      - title.tex           # see note at bottom of this file
+
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+source("../R/theme_uw.R")
+
+# Match the plot theme to the preamble toggle:
+#   \uwdarkfalse  → theme_uw()
+#   \uwdarktrue   → theme_uw_dark()
+theme_set(theme_uw(base_size = 9))   # small base size for Beamer
+```
+
+## Slide with bullet points
+
+- First bullet point
+- Second bullet point
+  - Indented sub-point
+- Third bullet point
+
+\begin{uwbox}{Key concept}
+Use the \texttt{uwbox} environment from the preamble for brand-styled
+block highlights.
+\end{uwbox}
+
+## Slide with a figure
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Caption appears below the figure in the slide."
+#| fig-width: 5.5
+#| fig-height: 3.2
+#| out-width: "90%"
+
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(size = 1.8, alpha = 0.85) +
+  scale_color_uw(labels = c("4-wheel", "Front", "Rear")) +
+  labs(
+    title = "Displacement vs. Highway MPG",
+    x     = "Displacement (L)",
+    y     = "Highway MPG",
+    color = "Drive"
+  )
+```
+
+## Slide with two columns
+
+:::::: {.columns}
+
+::: {.column width="48%"}
+
+Some explanatory text on the left.
+
+- Point A
+- Point B  
+- Point C
+
+:::
+
+::: {.column width="48%"}
+
+```{r}
+#| fig-width: 3.5
+#| fig-height: 3
+
+mpg |>
+  count(class) |>
+  ggplot(aes(x = n, y = reorder(class, n))) +
+  geom_col(fill = uw_color("badger_red")) +
+  labs(x = "Count", y = NULL)
+```
+
+:::
+
+::::::
+
+## Slide with a table
+
+```{r}
+library(knitr)
+
+mpg |>
+  group_by(drv) |>
+  summarise(
+    n        = n(),
+    mean_hwy = round(mean(hwy), 1),
+    mean_cty = round(mean(cty), 1)
+  ) |>
+  mutate(drv = recode(drv, `4` = "4-wheel", f = "Front", r = "Rear")) |>
+  kable(
+    col.names  = c("Drive", "n", "Hwy MPG", "City MPG"),
+    booktabs   = TRUE,
+    linesep    = ""
+  )
+```
+
+## Incremental slide
+
+Content appears item by item with Beamer pauses:
+
+- First item \pause
+- Second item \pause
+- Third item
+
+## {.plain}
+
+\begin{center}
+  {\Large\bfseries\color{BadgerRed} Thank You}\\[1em]
+  {\normalsize Author Name}\\[0.3em]
+  {\small Department · University of Wisconsin--Madison}\\[0.3em]
+  {\small \texttt{author@wisc.edu}}
+\end{center}
+
+<!--
+NOTE ON title.tex
+─────────────────
+The `template-partials: title.tex` line above tells Quarto to use
+a custom title page partial. To use the UW title page template
+defined in `_uw-beamer-preamble.tex` (\defbeamertemplate{title page}{uwmadison}),
+create a minimal title.tex file in slides/ with:
+
+  \setbeamertemplate{title page}[uwmadison]
+  \maketitle
+
+If you prefer Beamer's default title page, simply remove the
+`template-partials` key from the YAML above.
+-->

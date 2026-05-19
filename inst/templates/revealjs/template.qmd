@@ -1,0 +1,132 @@
+---
+title: "Presentation Title"
+subtitle: "Subtitle or Course Name"
+author: "Author Name"
+institute: "University of Wisconsin–Madison"
+date: today
+date-format: "MMMM D, YYYY"
+
+format:
+  revealjs:
+    # Light: white background, Badger Red headings
+    theme: [default, _uw-light.scss]
+    # Dark: near-black background, Badger Red accents
+    # theme: [default, _uw-dark.scss]
+
+    slide-number: c/t
+    progress: true
+    width: 1280
+    height: 720
+    margin: 0.08
+    highlight-style: github   # swap to 'github-dark' with dark theme
+    code-line-numbers: false
+    controls: false
+    hash: true
+
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(uwbranding)
+
+# Match to the theme: line above.
+# Light (_uw-light.scss):
+theme_set(theme_uw(base_size = 14))
+# Dark (_uw-dark.scss) — uncomment and swap scss above:
+# theme_set(theme_uw_dark(base_size = 14))
+```
+
+## Slide with bullet points
+
+- First bullet point
+- Second bullet point
+  - Indented sub-point
+- Third bullet point
+
+## Slide with a figure
+
+```{r}
+#| label: fig-scatter
+#| fig-width: 7
+#| fig-height: 4.2
+
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(size = 2.5, alpha = 0.85) +
+  scale_color_uw(labels = c("4-wheel", "Front", "Rear")) +
+  labs(
+    title = "Engine Displacement vs. Highway MPG",
+    x     = "Displacement (L)",
+    y     = "Highway MPG",
+    color = "Drive"
+  )
+```
+
+## Slide with two columns
+
+:::: {.columns}
+
+::: {.column width="48%"}
+Some explanatory text, a list, or another element.
+
+- Point A
+- Point B
+:::
+
+::: {.column width="48%"}
+```{r}
+#| fig-width: 5
+#| fig-height: 4
+
+mpg |>
+  count(class) |>
+  ggplot(aes(x = n, y = reorder(class, n))) +
+  geom_col(fill = uw_color("badger_red")) +
+  labs(x = "Count", y = NULL)
+```
+:::
+
+::::
+
+## Callout box
+
+::: {.uw-box}
+**Key takeaway** — Badger Red border box defined in `_uw-light.scss`.
+:::
+
+## Incremental reveal {.incremental}
+
+- First revealed
+- Then this one
+- Finally this
+
+## Speaker notes demo
+
+Main slide content.
+
+::: {.notes}
+Press **S** to open speaker view. Notes don't appear on the main slide.
+:::
+
+## Section divider {background-color="#C5050C"}
+
+::: {style="color: white; font-size: 1.6em; font-weight: bold;"}
+Section Title
+:::
+
+## Thank you {background-color="#C5050C"}
+
+::: {style="color: white; text-align: center;"}
+
+**Author Name**
+
+Department · University of Wisconsin–Madison
+
+`author@wisc.edu`
+
+:::

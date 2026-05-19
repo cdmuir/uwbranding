@@ -1,0 +1,110 @@
+---
+title: "Presentation Title"
+subtitle: "Subtitle or Course Name"
+author: "Author Name"
+institute: "University of Wisconsin–Madison"
+date: today
+date-format: "MMMM D, YYYY"
+
+format:
+  beamer:
+    pdf-engine: xelatex
+    include-in-header: _uw-beamer-preamble.tex
+    aspectratio: 169
+    fontsize: 11pt
+    highlight-style: tango   # swap to 'zenburn' for dark mode
+    template-partials:
+      - title.tex
+
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(uwbranding)
+
+# Match to the \uwdarkfalse / \uwdarktrue toggle in _uw-beamer-preamble.tex.
+# Light (\uwdarkfalse):
+theme_set(theme_uw(base_size = 9))
+# Dark (\uwdarktrue) — uncomment and flip the preamble toggle:
+# theme_set(theme_uw_dark(base_size = 9))
+```
+
+## Slide with bullet points
+
+- First bullet point
+- Second bullet point
+  - Indented sub-point
+- Third bullet point
+
+\begin{uwbox}{Key concept}
+Use \texttt{uwbox} from the preamble for brand-styled callouts.
+\end{uwbox}
+
+## Slide with a figure
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Caption appears below the figure."
+#| fig-width: 5.5
+#| fig-height: 3.2
+#| out-width: "90%"
+
+ggplot(mpg, aes(x = displ, y = hwy, color = drv)) +
+  geom_point(size = 1.8, alpha = 0.85) +
+  scale_color_uw(labels = c("4-wheel", "Front", "Rear")) +
+  labs(
+    title = "Displacement vs. Highway MPG",
+    x     = "Displacement (L)",
+    y     = "Highway MPG",
+    color = "Drive"
+  )
+```
+
+## Slide with two columns
+
+:::::: {.columns}
+
+::: {.column width="48%"}
+Some explanatory text on the left.
+
+- Point A
+- Point B
+:::
+
+::: {.column width="48%"}
+```{r}
+#| fig-width: 3.5
+#| fig-height: 3
+
+mpg |>
+  count(class) |>
+  ggplot(aes(x = n, y = reorder(class, n))) +
+  geom_col(fill = uw_color("badger_red")) +
+  labs(x = "Count", y = NULL)
+```
+:::
+
+::::::
+
+## Incremental slide
+
+Content appears item by item:
+
+- First item \pause
+- Second item \pause
+- Third item
+
+## {.plain}
+
+\begin{center}
+  {\Large\bfseries\color{BadgerRed} Thank You}\\[1em]
+  {\normalsize Author Name}\\[0.3em]
+  {\small Department $\cdot$ University of Wisconsin--Madison}\\[0.3em]
+  {\small \texttt{author@wisc.edu}}
+\end{center}

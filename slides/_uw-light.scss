@@ -1,0 +1,110 @@
+/*
+ * UW–Madison Brand — RevealJS Light Theme
+ * White background · Badger Red headings & title slide
+ * Fonts: Red Hat Display (headings), Crimson Pro (body)
+ */
+
+/*-- scss:defaults --*/
+
+// ── Brand palette ────────────────────────────────────────────
+$uw-badger-red : #C5050C;
+$uw-dark-red   : #9B0000;
+$uw-light-gray : #E1E5E7;
+$uw-black      : #121212;
+
+// ── Reveal variables ─────────────────────────────────────────
+$backgroundColor           : #ffffff;
+$mainColor                 : $uw-black;
+$headingColor              : $uw-badger-red;
+$linkColor                 : $uw-badger-red;
+$linkColorHover            : $uw-dark-red;
+$selectionBackgroundColor  : $uw-badger-red;
+$selectionColor            : #ffffff;
+
+$mainFont                  : 'Crimson Pro', serif;
+$mainFontSize              : 30px;
+$headingFont               : 'Red Hat Display', sans-serif;
+$headingTextTransform      : none;
+$headingFontWeight         : 700;
+$headingTextShadow         : none;
+$headingLetterSpacing      : -0.01em;
+
+$heading1Size              : 1.9em;
+$heading2Size              : 1.45em;
+$heading3Size              : 1.1em;
+$heading4Size              : 1.0em;
+
+$blockMargin               : 0.5em;
+
+/*-- scss:rules --*/
+
+// ── Title slide ───────────────────────────────────────────────
+// Badger Red background; all text white
+#title-slide {
+  background-color: $uw-badger-red;
+
+  .title {
+    color: #ffffff;
+    font-size: 1.8em;
+    border-bottom: none;
+  }
+  .subtitle {
+    color: rgba(255, 255, 255, 0.88);
+    font-family: 'Red Hat Text', sans-serif;
+    font-weight: 400;
+    font-size: 0.85em;
+    margin-top: 0.3em;
+  }
+  .author, .date, .institute {
+    color: rgba(255, 255, 255, 0.80);
+    font-family: 'Red Hat Text', sans-serif;
+    font-size: 0.65em;
+    margin-top: 0.15em;
+  }
+}
+
+// ── Section headings ─────────────────────────────────────────
+.reveal h1,
+.reveal h2 {
+  padding-bottom: 0.2em;
+  border-bottom: 2px solid $uw-badger-red;
+}
+
+// ── Progress bar ─────────────────────────────────────────────
+.reveal .progress {
+  color: $uw-badger-red;
+  height: 3px;
+}
+
+// ── Slide number ─────────────────────────────────────────────
+.reveal .slide-number {
+  color: $uw-dark-red;
+  background-color: transparent;
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 0.6em;
+}
+
+// ── Code blocks ──────────────────────────────────────────────
+.reveal pre {
+  box-shadow: none;
+  border: 1px solid $uw-light-gray;
+  border-radius: 4px;
+}
+.reveal pre code {
+  font-size: 0.72em;
+  max-height: 420px;
+}
+
+// ── UW callout box ───────────────────────────────────────────
+// Usage in QMD:  ::: {.uw-box}  content  :::
+.reveal .uw-box {
+  border: 2px solid $uw-badger-red;
+  border-radius: 4px;
+  padding: 0.4em 0.9em;
+  background-color: rgba(197, 5, 12, 0.06);
+}
+
+// ── Helper color classes ─────────────────────────────────────
+.reveal .badger-red { color: $uw-badger-red; }
+.reveal .dark-red   { color: $uw-dark-red; }
+.reveal .uw-muted   { color: lighten($uw-black, 35%); }

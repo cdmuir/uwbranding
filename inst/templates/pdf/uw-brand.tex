@@ -1,0 +1,185 @@
+% ============================================================
+% UW–Madison Brand Identity — LaTeX Preamble
+% For use with Quarto PDF (XeLaTeX engine)
+%
+% Fonts (install as system fonts before compiling):
+%   Crimson Pro    — https://brand.wisc.edu/resource/crimson-pro-font/
+%   Red Hat Display — https://brand.wisc.edu/resource/red-hat-display-font/
+%   Red Hat Text    — https://brand.wisc.edu/resource/red-hat-text-font/
+%
+% Icons/Illustrations — download and place in assets/ subdirectory:
+%   Print icons     — https://brand.wisc.edu/resource/icons-for-print/
+%   Digital icons   — https://brand.wisc.edu/resource/icons-for-digital/
+%   Print illus.    — https://brand.wisc.edu/resource/illustrations-for-print/
+%   Digital illus.  — https://brand.wisc.edu/resource/illustrations-for-digital/
+%   Graphic elem.   — https://brand.wisc.edu/resource/graphic-elements-for-print/
+% ============================================================
+
+% ------------------------------------------------------------
+% Packages
+% ------------------------------------------------------------
+\usepackage{xcolor}
+\usepackage{fontspec}       % XeLaTeX font loading
+\usepackage{titlesec}       % Custom section heading styles
+\usepackage{fancyhdr}       % Headers and footers
+\usepackage{graphicx}       % Including images (icons, illustrations)
+\usepackage{tcolorbox}      % Colored boxes / callouts
+\usepackage{mdframed}       % Framed environments
+\usepackage{hyperref}       % Hyperlinks
+
+% ------------------------------------------------------------
+% UW–Madison Brand Colors
+% ------------------------------------------------------------
+% Primary
+\definecolor{BadgerRed}{HTML}{C5050C}       % Badger Red (primary)
+\definecolor{UWWhite}{HTML}{FFFFFF}         % White (primary)
+
+% Secondary (digital)
+\definecolor{DarkRed}{HTML}{9B0000}         % Dark Red
+\definecolor{LightGray}{HTML}{E1E5E7}       % Light Gray
+\definecolor{UWBlack}{HTML}{121212}         % Near-black
+
+% Convenience aliases
+\newcommand{\badgerred}[1]{\textcolor{BadgerRed}{#1}}
+\newcommand{\darkred}[1]{\textcolor{DarkRed}{#1}}
+\newcommand{\uwgray}[1]{\textcolor{LightGray}{#1}}
+
+% ------------------------------------------------------------
+% Typography
+%   mainfont / sansfont set in Quarto YAML; overriding here
+%   gives you finer control, e.g. different weights per role.
+% ------------------------------------------------------------
+% Body text: Crimson Pro (serif, optimised for long-form print)
+\setmainfont{Crimson Pro}[
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+
+% Headings / sans-serif: Red Hat Display
+\setsansfont{Red Hat Display}[
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+
+% Small body copy / UI text: Red Hat Text
+\newfontfamily\RedHatText{Red Hat Text}[
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+
+% Monospace: unchanged (inherits Quarto/system default)
+
+% ------------------------------------------------------------
+% Hyperlink Colors
+% ------------------------------------------------------------
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = BadgerRed,
+  urlcolor   = BadgerRed,
+  citecolor  = DarkRed,
+}
+
+% ------------------------------------------------------------
+% Section Heading Styles
+%   Uses Red Hat Display (sans-serif) in brand colors.
+% ------------------------------------------------------------
+% \chapter — only active with book/report class
+\titleformat{\chapter}[block]
+  {\sffamily\huge\bfseries\color{BadgerRed}}
+  {\thechapter.}{0.5em}{}
+  [\color{BadgerRed}\titlerule]
+
+% \section
+\titleformat{\section}
+  {\sffamily\Large\bfseries\color{BadgerRed}}
+  {\thesection}{0.5em}{}
+
+% \subsection
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{DarkRed}}
+  {\thesubsection}{0.5em}{}
+
+% \subsubsection
+\titleformat{\subsubsection}
+  {\sffamily\normalsize\bfseries\color{UWBlack}}
+  {\thesubsubsection}{0.5em}{}
+
+% ------------------------------------------------------------
+% Header / Footer
+%   Minimal UW-branded page header. Adjust as needed.
+% ------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}  % clear defaults
+
+% Uncomment to add a logo in the header (place logo file in assets/):
+% \fancyhead[L]{\includegraphics[height=0.5cm]{assets/uw-crest.png}}
+
+\fancyhead[R]{\sffamily\small\color{BadgerRed} University of Wisconsin–Madison}
+\fancyfoot[C]{\sffamily\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{BadgerRed}\leaders\hrule height \headrulewidth\hfill}}
+
+% Apply fancy style to chapter/section opening pages too
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\sffamily\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------------------------------------------
+% Colored Box Environments (callouts / highlights)
+% ------------------------------------------------------------
+\tcbuselibrary{skins, breakable}
+
+% Red highlight box (primary brand)
+\newtcolorbox{uwbox}[1][]{
+  colback    = BadgerRed!8,
+  colframe   = BadgerRed,
+  fonttitle  = \sffamily\bfseries,
+  title      = {#1},
+  breakable,
+}
+
+% Gray info box
+\newtcolorbox{uwinfo}[1][]{
+  colback    = LightGray,
+  colframe   = UWBlack!40,
+  fonttitle  = \sffamily\bfseries,
+  title      = {#1},
+  breakable,
+}
+
+% Dark red accent box
+\newtcolorbox{uwaccent}[1][]{
+  colback    = DarkRed!10,
+  colframe   = DarkRed,
+  fonttitle  = \sffamily\bfseries\color{UWWhite},
+  coltitle   = UWWhite,
+  title      = {#1},
+  breakable,
+}
+
+% ------------------------------------------------------------
+% Icon / Illustration Helpers
+%   After downloading brand assets, place them in assets/.
+%   Usage: \uwicon{icon-name}{0.5cm}
+%          \uwillustration{building-name}{8cm}
+% ------------------------------------------------------------
+\newcommand{\uwicon}[2]{%
+  \includegraphics[height=#2]{assets/icons/#1}%
+}
+
+\newcommand{\uwillustration}[2]{%
+  \includegraphics[width=#2]{assets/illustrations/#1}%
+}
+
+% Inline icon (sits on text baseline, height = 1 line)
+\newcommand{\uwiconinline}[1]{%
+  \raisebox{-0.2\height}{\includegraphics[height=1em]{assets/icons/#1}}%
+}

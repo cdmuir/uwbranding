@@ -1,0 +1,17 @@
+project:
+  type: default
+  output-dir: _output
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    include-in-header: uw-brand.tex
+    papersize: letter
+    fontsize: 11pt
+    geometry:
+      - margin=1in
+    colorlinks: true
+
+execute:
+  echo: false
+  warning: false

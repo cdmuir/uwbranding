@@ -1,0 +1,21 @@
+project:
+  type: default
+  output-dir: _output   # rendered PDFs go here; add to .gitignore if desired
+
+# ── Shared PDF settings ──────────────────────────────────────────────────────
+# These apply to every .qmd in the project. Individual documents can override
+# any of these values in their own YAML front matter.
+format:
+  pdf:
+    pdf-engine: xelatex          # required for fontspec (Crimson Pro, Red Hat)
+    include-in-header: uw-brand.tex   # brand colors, fonts, heading styles
+    papersize: letter
+    fontsize: 11pt
+    geometry:
+      - margin=1in
+    colorlinks: true             # link colors set by uw-brand.tex hypersetup
+
+# ── Shared execution defaults ─────────────────────────────────────────────────
+execute:
+  echo: false
+  warning: false

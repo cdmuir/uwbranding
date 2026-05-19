@@ -1,0 +1,26 @@
+Package: uwbranding
+Title: UW-Madison Brand Identity for R and Quarto
+Version: 0.1.0
+Authors@R:
+    person("Chris", "Muir", email = "cdmuir@wisc.edu",
+           role = c("aut", "cre"))
+Description: Provides ggplot2 themes, color palettes, and Quarto document
+    templates conforming to the University of Wisconsin-Madison brand identity.
+    Includes light and dark variants for PDF documents, RevealJS presentations,
+    and Beamer slides. Quarto template files are copied into user projects via
+    use_uw_pdf(), use_uw_revealjs(), and use_uw_beamer().
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    ggplot2 (>= 3.4.0)
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    withr
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+URL: https://github.com/cdmuir/uwbranding
+BugReports: https://github.com/cdmuir/uwbranding/issues

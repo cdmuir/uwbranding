@@ -1,0 +1,144 @@
+---
+title: "Document Title"
+subtitle: "Subtitle or Course Name"
+author: "Author Name"
+date: today
+date-format: "MMMM D, YYYY"
+
+# Shared settings (pdf-engine, include-in-header, papersize, fontsize,
+# geometry, execute defaults) come from _quarto.yml automatically.
+# Only document-specific overrides are needed here.
+format:
+  pdf:
+    documentclass: article  # use 'report' for chapter-level headings
+    toc: true
+    toc-depth: 2
+    number-sections: true
+
+bibliography: references.bib  # remove if not using citations
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+source("R/theme_uw.R")
+```
+
+# Introduction {#sec-intro}
+
+This document uses the UW–Madison brand identity: **Badger Red** headings, 
+*Crimson Pro* for body text, and Red Hat Display for headings and sans-serif 
+elements.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+nostrud exercitation ullamco laboris.
+
+## Using Brand Colors Inline
+
+You can apply brand colors directly in LaTeX raw blocks:
+
+`\badgerred{This text is Badger Red.}`{=latex}
+
+`\darkred{This text is Dark Red.}`{=latex}
+
+## Colored Boxes
+
+Use the custom box environments with raw LaTeX blocks.
+
+```{=latex}
+\begin{uwbox}[Key Concept]
+This is a primary Badger Red callout box — good for important notes, 
+definitions, or key takeaways.
+\end{uwbox}
+```
+
+```{=latex}
+\begin{uwinfo}[Background]
+This is a light gray info box — good for supplementary context or 
+background information.
+\end{uwinfo}
+```
+
+```{=latex}
+\begin{uwaccent}[Warning]
+This is a dark red accent box — good for warnings or critical points.
+\end{uwaccent}
+```
+
+# Figures and Illustrations {#sec-figures}
+
+## R-generated Figures
+
+```{r}
+#| label: fig-example
+#| fig-cap: "A sample ggplot2 figure using UW brand colors."
+#| fig-width: 5
+#| fig-height: 3.5
+
+# Example plot using theme_uw() and scale_fill_uw()
+tibble(
+  group = c("A", "B", "C", "D"),
+  value = c(42, 67, 31, 55)
+) |>
+  ggplot(aes(x = value, y = group, fill = group)) +
+  geom_col() +
+  scale_fill_uw(guide = "none") +
+  labs(x = "Value", y = NULL) +
+  theme_uw(grid = "x")
+```
+
+## Brand Illustrations
+
+After downloading illustrations from the brand site and placing them in 
+`assets/illustrations/`, include them with:
+
+```markdown
+![Caption for the illustration.](assets/illustrations/bascom-hall.svg){width=80%}
+```
+
+Or via the LaTeX helper (gives more layout control):
+
+```{=latex}
+% \uwillustration{filename.svg}{10cm}
+```
+
+## Brand Icons
+
+After downloading icons to `assets/icons/`, use them inline or as figures:
+
+```markdown
+![](assets/icons/research.svg){height=1.5cm}
+```
+
+Or inline in a sentence via the LaTeX helper:
+
+```{=latex}
+% Research \uwiconinline{research.svg} is central to UW–Madison's mission.
+```
+
+# Tables {#sec-tables}
+
+| Variable | Mean | SD |
+|---|---|---|
+| Height (cm) | 175.2 | 8.4 |
+| Weight (kg) | 72.1 | 12.3 |
+
+: Summary statistics for the sample. {#tbl-summary}
+
+See @tbl-summary for descriptive statistics.
+
+# Equations {#sec-equations}
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i
+$$ {#eq-mean}
+
+The sample mean is shown in @eq-mean.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
