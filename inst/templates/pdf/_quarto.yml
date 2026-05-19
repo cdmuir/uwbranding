@@ -12,6 +12,10 @@ format:
       - margin=1in
     colorlinks: true
 
+knitr:
+  opts_chunk:
+    dev: cairo_pdf
+
 execute:
   echo: false
   warning: false
