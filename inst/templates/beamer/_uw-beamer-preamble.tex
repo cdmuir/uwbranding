@@ -36,16 +36,16 @@
 %   Red Hat Text is available via \RedHatText for body emphasis.
 % ------------------------------------------------------------
 \setsansfont{Red Hat Display}[
-  UprightFont    = *-Regular,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic,
+  UprightFont    = * Regular,
+  BoldFont       = * Bold,
+  ItalicFont     = * Italic,
+  BoldItalicFont = * Bold Italic,
 ]
 \setmainfont{Red Hat Text}[
-  UprightFont    = *-Regular,
-  BoldFont       = *-Bold,
-  ItalicFont     = *-Italic,
-  BoldItalicFont = *-BoldItalic,
+  UprightFont    = * Regular,
+  BoldFont       = * Bold,
+  ItalicFont     = * Italic,
+  BoldItalicFont = * Bold Italic,
 ]
 
 % ------------------------------------------------------------
@@ -64,7 +64,7 @@
   \setbeamercolor{structure}        {fg=BadgerRed}
   \setbeamercolor{frametitle}       {fg=white,      bg=BadgerRed}
   \setbeamercolor{framesubtitle}    {fg=LightGray}
-  \setbeamercolor{title}            {fg=white}
+  \setbeamercolor{title}            {fg=white,      bg=BadgerRed}
   \setbeamercolor{subtitle}         {fg=LightGray}
   \setbeamercolor{author}           {fg=LightGray}
   \setbeamercolor{date}             {fg=LightGray}
@@ -86,7 +86,7 @@
   \setbeamercolor{structure}        {fg=BadgerRed}
   \setbeamercolor{frametitle}       {fg=white,      bg=BadgerRed}
   \setbeamercolor{framesubtitle}    {fg=UWBlack}
-  \setbeamercolor{title}            {fg=white}
+  \setbeamercolor{title}            {fg=white,      bg=BadgerRed}
   \setbeamercolor{subtitle}         {fg=LightGray}
   \setbeamercolor{author}           {fg=LightGray}
   \setbeamercolor{date}             {fg=LightGray}
@@ -107,14 +107,16 @@
 % Frame Title
 % ------------------------------------------------------------
 \setbeamertemplate{frametitle}{%
-  \vspace{0.6em}%
-  \usebeamerfont{frametitle}\insertframetitle%
-  \ifx\insertframesubtitle\@empty\else%
-    \\[0.15em]%
-    {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}%
-     \insertframesubtitle}%
-  \fi%
-  \vspace{0.3em}%
+  \nointerlineskip%
+  \begin{beamercolorbox}[wd=\paperwidth, leftskip=0.06\paperwidth,
+      ht=2.2em, dp=0.5em]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle%
+    \ifx\insertframesubtitle\@empty\else%
+      \\[0.15em]%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}%
+       \insertframesubtitle}%
+    \fi%
+  \end{beamercolorbox}%
 }
 
 % ------------------------------------------------------------

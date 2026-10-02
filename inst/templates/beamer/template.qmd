@@ -13,8 +13,6 @@ format:
     aspectratio: 169
     fontsize: 11pt
     highlight-style: tango   # swap to 'zenburn' for dark mode
-    template-partials:
-      - title.tex
 
 execute:
   echo: false
