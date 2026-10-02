@@ -1,0 +1,130 @@
+% ============================================================
+% UW–Madison Brand Identity — Letterhead Preamble
+% For use with Quarto PDF (XeLaTeX engine)
+%
+% Modeled on the official color letterhead template:
+%   https://brand.wisc.edu/resource/color-letterhead-template/
+%
+% Fonts (install as system fonts before compiling):
+%   Crimson Pro    — https://brand.wisc.edu/resource/crimson-pro-font/
+%   Red Hat Display — https://brand.wisc.edu/resource/red-hat-display-font/
+%   Red Hat Text    — https://brand.wisc.edu/resource/red-hat-text-font/
+%
+% Logo — download the UW–Madison logo/crest and place it in assets/:
+%   https://brand.wisc.edu/visual-identity/logos/
+% Uncomment the \includegraphics line below once the file is in place.
+%
+% The four pieces of contact information (department, address, email,
+% website) are exposed as LaTeX commands with sensible defaults. The
+% accompanying template.qmd overrides them via \renewcommand based on
+% YAML `params`, so end users customize the letterhead entirely from
+% the document front matter — no LaTeX editing required.
+% ============================================================
+
+% ------------------------------------------------------------
+% Packages
+% ------------------------------------------------------------
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% ------------------------------------------------------------
+% UW–Madison Brand Colors
+% ------------------------------------------------------------
+\definecolor{BadgerRed}{HTML}{C5050C}
+\definecolor{DarkRed}{HTML}{9B0000}
+\definecolor{LightGray}{HTML}{E1E5E7}
+\definecolor{UWBlack}{HTML}{121212}
+
+% ------------------------------------------------------------
+% Typography
+% ------------------------------------------------------------
+\setmainfont{Crimson Pro}[
+  BoldFont       = * Bold,
+  ItalicFont     = * Italic,
+  BoldItalicFont = * Bold Italic,
+]
+
+\setsansfont{Red Hat Display}[
+  UprightFont    = * Regular,
+  BoldFont       = * Bold,
+  ItalicFont     = * Italic,
+  BoldItalicFont = * Bold Italic,
+]
+
+\newfontfamily\RedHatText{Red Hat Text}[
+  UprightFont    = * Regular,
+  BoldFont       = * Bold,
+  ItalicFont     = * Italic,
+  BoldItalicFont = * Bold Italic,
+]
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = BadgerRed,
+  urlcolor   = BadgerRed,
+}
+
+% ------------------------------------------------------------
+% Customizable letterhead fields
+%   Overridden from template.qmd via \renewcommand, driven by
+%   YAML `params: department / address / email / website`.
+% ------------------------------------------------------------
+\newcommand{\uwdepartment}{Department Name}
+\newcommand{\uwaddress}{Street Address, Madison, WI 53706}
+\newcommand{\uwemail}{department@wisc.edu}
+\newcommand{\uwwebsite}{wisc.edu}
+
+% ------------------------------------------------------------
+% Page geometry
+%   Generous top margin for the logo/department header; generous
+%   bottom margin for the address/contact footer, matching the
+%   proportions of the official letterhead template.
+% ------------------------------------------------------------
+\usepackage[
+  top=1.75in,bottom=1in,left=1in,right=1in,
+  headheight=1.25in,footskip=0.6in
+]{geometry}
+
+% ------------------------------------------------------------
+% Header / Footer
+% ------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{} % clear defaults
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Logo (left header) — uncomment once the file is downloaded into
+% assets/ from https://brand.wisc.edu/visual-identity/logos/
+% \lhead{\includegraphics[height=0.6in]{assets/uw-logo.eps}}
+
+\lhead{\sffamily\LARGE\bfseries\color{BadgerRed} University of Wisconsin\textendash Madison}
+
+\rhead{%
+  \sffamily\footnotesize\color{UWBlack}
+  \uwdepartment
+}
+
+\lfoot{%
+  {\color{BadgerRed}\rule{\textwidth}{1pt}}\\[4pt]
+  \RedHatText\footnotesize\color{UWBlack}
+  \uwaddress \quad|\quad \uwemail \quad|\quad \href{https://\uwwebsite}{\uwwebsite}
+}
+
+% First page also uses the fancy style (Quarto/LaTeX normally
+% switches to \thispagestyle{plain} for the first page of some
+% classes; this keeps the letterhead on every page, including page 1).
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \lhead{\sffamily\LARGE\bfseries\color{BadgerRed} University of Wisconsin\textendash Madison}
+  \rhead{\sffamily\footnotesize\color{UWBlack} \uwdepartment}
+  \lfoot{%
+    {\color{BadgerRed}\rule{\textwidth}{1pt}}\\[4pt]
+    \RedHatText\footnotesize\color{UWBlack}
+    \uwaddress \quad|\quad \uwemail \quad|\quad \href{https://\uwwebsite}{\uwwebsite}
+  }
+}

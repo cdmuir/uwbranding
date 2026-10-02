@@ -1,0 +1,58 @@
+---
+title: ""
+params:
+  department: "Department of Example Studies"
+  address: "1234 Example Street, Madison, WI 53706"
+  email: "example@wisc.edu"
+  website: "example.wisc.edu"
+
+# Shared settings (pdf-engine, include-in-header, papersize, fontsize,
+# colorlinks) come from _quarto.yml automatically.
+format:
+  pdf:
+    documentclass: article
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(knitr)
+```
+
+```{r}
+#| label: letterhead-fields
+#| echo: false
+#| results: asis
+
+# Pushes the `params` set in the YAML front matter into the LaTeX
+# commands defined in uw-letterhead.tex. Edit the `params:` block
+# above (department, address, email, website) to customize the
+# letterhead — no LaTeX editing required.
+cat(sprintf("\\renewcommand{\\uwdepartment}{%s}\n", params$department))
+cat(sprintf("\\renewcommand{\\uwaddress}{%s}\n", params$address))
+cat(sprintf("\\renewcommand{\\uwemail}{%s}\n", params$email))
+cat(sprintf("\\renewcommand{\\uwwebsite}{%s}\n", params$website))
+```
+
+\today
+
+Recipient Name  
+Recipient Title  
+Recipient Address  
+
+Dear Recipient Name,
+
+Body of the letter goes here. Replace this paragraph — and the
+salutation and closing above and below — with your own text. The
+department, address, email, and website shown in the header/footer
+are controlled entirely by the `params` block in the YAML front
+matter, so this document can be reused across a lab or department by
+changing only those four values.
+
+Sincerely,
+
+\vspace{3\baselineskip}
+
+Sender Name  
+Sender Title

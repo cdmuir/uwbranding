@@ -71,6 +71,7 @@ reference:
       - use_uw_pdf
       - use_uw_revealjs
       - use_uw_beamer
+      - use_uw_letterhead
 
   - title: "Package"
     contents:

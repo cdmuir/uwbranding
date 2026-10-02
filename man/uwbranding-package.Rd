@@ -6,18 +6,26 @@
 \alias{uwbranding-package}
 \title{uwbranding: UW-Madison Brand Identity for R and Quarto}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Provides ggplot2 themes, color palettes, and Quarto document templates conforming to the University of Wisconsin-Madison brand identity. Includes light and dark variants for PDF documents, RevealJS presentations, and Beamer slides. Quarto template files are copied into user projects via use_uw_pdf(), use_uw_revealjs(), and use_uw_beamer().
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/yourname/uwbranding}
-  \item Report bugs at \url{https://github.com/yourname/uwbranding/issues}
+  \item \url{https://cdmuir.github.io/uwbranding}
+  \item \url{https://github.com/cdmuir/uwbranding}
+  \item Report bugs at \url{https://github.com/cdmuir/uwbranding/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: First Last \email{author@wisc.edu}
+\strong{Maintainer}: Chris Muir \email{cdmuir@wisc.edu}
+
+Authors:
+\itemize{
+  \item Chris Muir \email{cdmuir@wisc.edu}
+}
 
 }
 \keyword{internal}

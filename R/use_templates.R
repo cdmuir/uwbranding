@@ -22,6 +22,14 @@
 #' - `title.tex` — custom title-page partial
 #' - `template.qmd` — starter Beamer presentation
 #'
+#' **`use_uw_letterhead()`** copies:
+#' - `uw-letterhead.tex` — LaTeX preamble reproducing the official
+#'   [UW–Madison color letterhead](https://brand.wisc.edu/resource/color-letterhead-template/)
+#'   (brand colors/fonts, header, and address footer)
+#' - `_quarto.yml` — project config (XeLaTeX engine, shared settings)
+#' - `template.qmd` — starter letter with a `params` block for the
+#'   department, address, email, and website shown in the letterhead
+#'
 #' @param path Directory to copy files into. Defaults to the current
 #'   working directory.
 #' @param overwrite If `TRUE`, existing files are overwritten without
@@ -47,6 +55,12 @@ use_uw_revealjs <- function(path = ".", overwrite = FALSE) {
 #' @export
 use_uw_beamer <- function(path = ".", overwrite = FALSE) {
   copy_templates("beamer", path = path, overwrite = overwrite)
+}
+
+#' @rdname use_uw
+#' @export
+use_uw_letterhead <- function(path = ".", overwrite = FALSE) {
+  copy_templates("letterhead", path = path, overwrite = overwrite)
 }
 
 # Internal helper -------------------------------------------------------

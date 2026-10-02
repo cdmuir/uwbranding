@@ -5,6 +5,7 @@
 \alias{use_uw_pdf}
 \alias{use_uw_revealjs}
 \alias{use_uw_beamer}
+\alias{use_uw_letterhead}
 \title{Copy UW brand Quarto templates into the current project}
 \usage{
 use_uw_pdf(path = ".", overwrite = FALSE)
@@ -12,6 +13,8 @@ use_uw_pdf(path = ".", overwrite = FALSE)
 use_uw_revealjs(path = ".", overwrite = FALSE)
 
 use_uw_beamer(path = ".", overwrite = FALSE)
+
+use_uw_letterhead(path = ".", overwrite = FALSE)
 }
 \arguments{
 \item{path}{Directory to copy files into. Defaults to the current
@@ -51,6 +54,16 @@ copies.
 \item \verb{_uw-beamer-preamble.tex} — Beamer color/font/layout setup
 \item \code{title.tex} — custom title-page partial
 \item \code{template.qmd} — starter Beamer presentation
+}
+
+\strong{\code{use_uw_letterhead()}} copies:
+\itemize{
+\item \code{uw-letterhead.tex} — LaTeX preamble reproducing the official
+\href{https://brand.wisc.edu/resource/color-letterhead-template/}{UW–Madison color letterhead}
+(brand colors/fonts, header, and address footer)
+\item \verb{_quarto.yml} — project config (XeLaTeX engine, shared settings)
+\item \code{template.qmd} — starter letter with a \code{params} block for the
+department, address, email, and website shown in the letterhead
 }
 }
 

@@ -1,0 +1,20 @@
+project:
+  type: default
+  output-dir: _output
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    include-in-header: uw-letterhead.tex
+    documentclass: article
+    papersize: letter
+    fontsize: 11pt
+    colorlinks: true
+
+knitr:
+  opts_chunk:
+    dev: ragg_png
+
+execute:
+  echo: false
+  warning: false
