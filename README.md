@@ -6,7 +6,7 @@ UW–Madison brand identity for R and Quarto: ggplot2 themes, color scales, and 
 
 ```r
 # install.packages("pak")
-pak::pak("yourname/uwbranding")
+pak::pak("cdmuir/uwbranding")
 ```
 
 ## Fonts
