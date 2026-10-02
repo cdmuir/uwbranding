@@ -8,7 +8,7 @@ scales, and Quarto document templates.
 ``` r
 
 # install.packages("pak")
-pak::pak("yourname/uwbranding")
+pak::pak("cdmuir/uwbranding")
 ```
 
 ## Fonts
