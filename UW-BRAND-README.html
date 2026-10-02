@@ -70,23 +70,40 @@
 </tr><tr><td><code>slides/title.tex</code></td>
 <td>Beamer title-page partial — activates the UW custom title layout</td>
 </tr></tbody></table></div>
+<div class="section level3">
+<h3 id="letterhead-use_uw_letterhead">Letterhead (<code>use_uw_letterhead()</code>)<a class="anchor" aria-label="anchor" href="#letterhead-use_uw_letterhead"></a></h3>
+<table class="table"><colgroup><col width="50%"><col width="50%"></colgroup><thead><tr><th>File</th>
+<th>Purpose</th>
+</tr></thead><tbody><tr><td><code>uw-letterhead.tex</code></td>
+<td>LaTeX preamble reproducing the <a href="https://brand.wisc.edu/resource/color-letterhead-template/" class="external-link">official color letterhead</a> — header with department name, footer with address/email/website</td>
+</tr><tr><td><code>_quarto.yml</code></td>
+<td>Project config for the letterhead (XeLaTeX engine, brand header)</td>
+</tr><tr><td><code>template.qmd</code></td>
+<td>Starter letter — set <code>department</code>, <code>address</code>, <code>email</code>, and <code>website</code> in the YAML <code>params</code> block to customize</td>
+</tr></tbody></table><p>Render a customized letter without editing the <code>.qmd</code> by passing params at render time:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">quarto</span> render template.qmd <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">-P</span> department:<span class="st">"Department of Botany"</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="at">-P</span> address:<span class="st">"430 Lincoln Drive, Madison, WI 53706"</span> <span class="dt">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  <span class="at">-P</span> email:<span class="st">"botany@wisc.edu"</span> <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="at">-P</span> website:<span class="st">"botany.wisc.edu"</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="rendering">Rendering<a class="anchor" aria-label="anchor" href="#rendering"></a></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Render a single PDF document</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">quarto</span> render my-doc.qmd</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># Render a RevealJS presentation</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="ex">quarto</span> render slides/my-talk.qmd</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># Render a Beamer presentation</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="ex">quarto</span> render slides/my-beamer.qmd</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># Render all PDFs (root project)</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="ex">quarto</span> render</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># Render all slides (slides sub-project)</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="ex">quarto</span> render slides/</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Render a single PDF document</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">quarto</span> render my-doc.qmd</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Render a RevealJS presentation</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">quarto</span> render slides/my-talk.qmd</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># Render a Beamer presentation</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="ex">quarto</span> render slides/my-beamer.qmd</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co"># Render all PDFs (root project)</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">quarto</span> render</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Render all slides (slides sub-project)</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="ex">quarto</span> render slides/</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h2>
@@ -107,8 +124,8 @@
 <td><a href="https://brand.wisc.edu/resource/red-hat-text-font/" class="external-link uri">https://brand.wisc.edu/resource/red-hat-text-font/</a></td>
 </tr></tbody></table><p><strong>macOS:</strong> Open Font Book → File → Add Fonts<br><strong>Windows:</strong> Right-click the <code>.ttf</code>/<code>.otf</code> file → Install for all users</p>
 <p>After installing, verify XeLaTeX can find them:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">fc-list</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="st">"crimson"</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">fc-list</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="st">"red hat"</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">fc-list</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="st">"crimson"</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">fc-list</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-i</span> <span class="st">"red hat"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="id_2-download-brand-assets">2. Download brand assets<a class="anchor" aria-label="anchor" href="#id_2-download-brand-assets"></a></h3>
@@ -143,24 +160,24 @@
 </ul></div>
 <div class="section level3">
 <h3 id="id_3-render">3. Render<a class="anchor" aria-label="anchor" href="#id_3-render"></a></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">quarto</span> render your-document.qmd</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">quarto</span> render your-document.qmd</span></code></pre></div>
 <p>Or use the <strong>Render</strong> button in RStudio.</p>
 <hr></div>
 </div>
 <div class="section level2">
 <h2 id="switching-light--dark">Switching light ↔︎ dark<a class="anchor" aria-label="anchor" href="#switching-light--dark"></a></h2>
 <p><strong>RevealJS</strong> — swap one line in the YAML:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Light:</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> _uw-light.scss</span><span class="kw">]</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># Dark:</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> _uw-dark.scss</span><span class="kw">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Light:</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> _uw-light.scss</span><span class="kw">]</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># Dark:</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> _uw-dark.scss</span><span class="kw">]</span></span></code></pre></div>
 <p>And in the setup chunk, match the plot theme:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">theme_set</span><span class="op">(</span><span class="fu"><a href="reference/theme_uw.html">theme_uw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span>       <span class="co"># light</span></span>
 <span><span class="fu">theme_set</span><span class="op">(</span><span class="fu"><a href="reference/theme_uw_dark.html">theme_uw_dark</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span><span class="op">)</span>  <span class="co"># dark</span></span></code></pre></div>
 <p><strong>Beamer</strong> — flip one line in <code>_uw-beamer-preamble.tex</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">\uwdarkfalse</span>   <span class="co">% light (default)</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">\uwdarktrue</span>    <span class="co">% dark</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">\uwdarkfalse</span>   <span class="co">% light (default)</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">\uwdarktrue</span>    <span class="co">% dark</span></span></code></pre></div>
 <p>And match the plot theme in the setup chunk (same as RevealJS above, but use <code>base_size = 9</code>).</p>
 <hr></div>
 <div class="section level2">
@@ -188,26 +205,26 @@
 </tr></tbody></table></div>
 <div class="section level3">
 <h3 id="latex-macros-defined-in-uw-brandtex">LaTeX macros (defined in <code>uw-brand.tex</code>)<a class="anchor" aria-label="anchor" href="#latex-macros-defined-in-uw-brandtex"></a></h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">\badgerred</span>{text}          <span class="co">% Badger Red inline text color</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">\darkred</span>{text}            <span class="co">% Dark Red inline text color</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">\uwicon</span>{filename}{height}              <span class="co">% Brand icon at given height</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">\uwillustration</span>{filename}{width}       <span class="co">% Brand illustration at given width</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="fu">\uwiconinline</span>{filename}                <span class="co">% Icon sized to current line height</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">uwbox</span>}[Title]   ... <span class="kw">\end</span>{<span class="ex">uwbox</span>}      <span class="co">% Red callout box</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">uwinfo</span>}[Title]  ... <span class="kw">\end</span>{<span class="ex">uwinfo</span>}     <span class="co">% Gray info box</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">uwaccent</span>}[Title] ... <span class="kw">\end</span>{<span class="ex">uwaccent</span>}  <span class="co">% Dark red accent box</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">\badgerred</span>{text}          <span class="co">% Badger Red inline text color</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">\darkred</span>{text}            <span class="co">% Dark Red inline text color</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="fu">\uwicon</span>{filename}{height}              <span class="co">% Brand icon at given height</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">\uwillustration</span>{filename}{width}       <span class="co">% Brand illustration at given width</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="fu">\uwiconinline</span>{filename}                <span class="co">% Icon sized to current line height</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">uwbox</span>}[Title]   ... <span class="kw">\end</span>{<span class="ex">uwbox</span>}      <span class="co">% Red callout box</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">uwinfo</span>}[Title]  ... <span class="kw">\end</span>{<span class="ex">uwinfo</span>}     <span class="co">% Gray info box</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">uwaccent</span>}[Title] ... <span class="kw">\end</span>{<span class="ex">uwaccent</span>}  <span class="co">% Dark red accent box</span></span></code></pre></div>
 <p>Use these inside <code>```{=latex}</code> blocks in your <code>.qmd</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="in">```{=latex}</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="in">\begin{uwbox}[Key Takeaway]</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="in">Content of the box goes here.</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="in">\end{uwbox}</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="in">```{=latex}</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="in">\begin{uwbox}[Key Takeaway]</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="in">Content of the box goes here.</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="in">\end{uwbox}</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="ggplot2-theme-and-scales-rtheme_uwr">ggplot2 theme and scales (<code>R/theme_uw.R</code>)<a class="anchor" aria-label="anchor" href="#ggplot2-theme-and-scales-rtheme_uwr"></a></h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/source.html" class="external-link">source</a></span><span class="op">(</span><span class="st">"R/theme_uw.R"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Individual color lookup</span></span>
@@ -252,7 +269,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

@@ -10,10 +10,16 @@ user projects via use_uw_pdf(), use_uw_revealjs(), and use_uw_beamer().
 
 Useful links:
 
-- <https://github.com/yourname/uwbranding>
+- <https://cdmuir.github.io/uwbranding>
 
-- Report bugs at <https://github.com/yourname/uwbranding/issues>
+- <https://github.com/cdmuir/uwbranding>
+
+- Report bugs at <https://github.com/cdmuir/uwbranding/issues>
 
 ## Author
 
-**Maintainer**: First Last <author@wisc.edu>
+**Maintainer**: Chris Muir <cdmuir@wisc.edu>
+
+Authors:
+
+- Chris Muir <cdmuir@wisc.edu>

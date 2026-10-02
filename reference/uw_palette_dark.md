@@ -9,7 +9,3 @@ background.
 ``` r
 uw_palette_dark
 ```
-
-## Format
-
-An object of class `character` of length 7.

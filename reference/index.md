@@ -67,6 +67,7 @@ Copy UW–Madison branded Quarto templates into a project.
 - [`use_uw_pdf()`](https://cdmuir.github.io/uwbranding/reference/use_uw.md)
   [`use_uw_revealjs()`](https://cdmuir.github.io/uwbranding/reference/use_uw.md)
   [`use_uw_beamer()`](https://cdmuir.github.io/uwbranding/reference/use_uw.md)
+  [`use_uw_letterhead()`](https://cdmuir.github.io/uwbranding/reference/use_uw.md)
   : Copy UW brand Quarto templates into the current project
 
 ## Package

@@ -26,6 +26,25 @@ brand identity](https://brand.wisc.edu/).
 | `slides/_uw-beamer-preamble.tex` | Beamer color, font, and layout setup (light/dark toggle) |
 | `slides/title.tex` | Beamer title-page partial — activates the UW custom title layout |
 
+### Letterhead (`use_uw_letterhead()`)
+
+| File | Purpose |
+|----|----|
+| `uw-letterhead.tex` | LaTeX preamble reproducing the [official color letterhead](https://brand.wisc.edu/resource/color-letterhead-template/) — header with department name, footer with address/email/website |
+| `_quarto.yml` | Project config for the letterhead (XeLaTeX engine, brand header) |
+| `template.qmd` | Starter letter — set `department`, `address`, `email`, and `website` in the YAML `params` block to customize |
+
+Render a customized letter without editing the `.qmd` by passing params
+at render time:
+
+``` bash
+quarto render template.qmd \
+  -P department:"Department of Botany" \
+  -P address:"430 Lincoln Drive, Madison, WI 53706" \
+  -P email:"botany@wisc.edu" \
+  -P website:"botany.wisc.edu"
+```
+
 ## Rendering
 
 ``` bash

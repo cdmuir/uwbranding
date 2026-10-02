@@ -8,7 +8,3 @@ gray is last because it is nearly invisible on white.
 ``` r
 uw_palette_discrete
 ```
-
-## Format
-
-An object of class `character` of length 7.
