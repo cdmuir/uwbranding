@@ -112,8 +112,7 @@ scale_colour_uw(...)
 ## Examples
 
 ``` r
-ggplot2::ggplot(mpg, ggplot2::aes(displ, hwy, color = drv)) +
+p <- ggplot2::ggplot(ggplot2::mpg, ggplot2::aes(displ, hwy, color = drv)) +
   ggplot2::geom_point() +
   scale_color_uw()
-#> Error: object 'mpg' not found
 ```

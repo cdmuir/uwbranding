@@ -176,8 +176,7 @@ scale_fill_uw_c(
 ## Examples
 
 ``` r
-ggplot2::ggplot(faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
+p <- ggplot2::ggplot(ggplot2::faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
   ggplot2::geom_tile() +
   scale_fill_uw_c()
-#> Error: object 'faithfuld' not found
 ```

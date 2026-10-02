@@ -110,8 +110,7 @@ scale_fill_uw(...)
 ## Examples
 
 ``` r
-ggplot2::ggplot(mpg, ggplot2::aes(class, fill = class)) +
+p <- ggplot2::ggplot(ggplot2::mpg, ggplot2::aes(class, fill = class)) +
   ggplot2::geom_bar() +
   scale_fill_uw()
-#> Error: object 'mpg' not found
 ```
