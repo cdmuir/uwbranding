@@ -111,7 +111,7 @@ bounds values with \code{NA}.
 Gradient from UW Light Gray to Badger Red.
 }
 \examples{
-ggplot2::ggplot(faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
+p <- ggplot2::ggplot(ggplot2::faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
   ggplot2::geom_tile() +
   scale_fill_uw_c()
 }

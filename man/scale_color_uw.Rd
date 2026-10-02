@@ -67,7 +67,7 @@ notation.
 Uses \link{uw_palette_discrete}, ordered for contrast on light/white backgrounds.
 }
 \examples{
-ggplot2::ggplot(mpg, ggplot2::aes(displ, hwy, color = drv)) +
+p <- ggplot2::ggplot(ggplot2::mpg, ggplot2::aes(displ, hwy, color = drv)) +
   ggplot2::geom_point() +
   scale_color_uw()
 }

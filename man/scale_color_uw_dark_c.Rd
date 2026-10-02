@@ -111,7 +111,9 @@ bounds values with \code{NA}.
 Default gradient runs Badger Red → White, suited to dark panels.
 }
 \examples{
-ggplot2::ggplot(faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
+# Not printed: rendering requires the Red Hat/Crimson Pro brand fonts to
+# be installed as system fonts (see UW-BRAND-README.md).
+p <- ggplot2::ggplot(ggplot2::faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
   ggplot2::geom_tile() +
   scale_fill_uw_dark_c() +
   theme_uw_dark(grid = "none")

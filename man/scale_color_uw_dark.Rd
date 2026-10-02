@@ -72,7 +72,9 @@ colors are placed last because they are low-contrast on a Badger Red
 background.
 }
 \examples{
-ggplot2::ggplot(mpg, ggplot2::aes(displ, hwy, color = drv)) +
+# Not printed: rendering requires the Red Hat/Crimson Pro brand fonts to
+# be installed as system fonts (see UW-BRAND-README.md).
+p <- ggplot2::ggplot(ggplot2::mpg, ggplot2::aes(displ, hwy, color = drv)) +
   ggplot2::geom_point() +
   scale_color_uw_dark() +
   theme_uw_dark()

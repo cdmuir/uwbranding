@@ -40,13 +40,15 @@ Applies the UW–Madison brand identity to a ggplot2 plot:
 }
 }
 \examples{
-ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+# Not printed in examples: rendering requires the Red Hat/Crimson Pro
+# brand fonts to be installed as system fonts (see UW-BRAND-README.md).
+p1 <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
   ggplot2::geom_point() +
   ggplot2::labs(title = "Fuel Economy") +
   theme_uw()
 
 # Grid on x axis only, larger base size
-ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+p2 <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
   ggplot2::geom_point() +
   theme_uw(base_size = 14, grid = "x")
 }

@@ -64,7 +64,7 @@ notation.
 Uses \link{uw_palette_discrete}, ordered for contrast on light/white backgrounds.
 }
 \examples{
-ggplot2::ggplot(mpg, ggplot2::aes(class, fill = class)) +
+p <- ggplot2::ggplot(ggplot2::mpg, ggplot2::aes(class, fill = class)) +
   ggplot2::geom_bar() +
   scale_fill_uw()
 }

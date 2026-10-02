@@ -19,11 +19,13 @@
 #' @return A [ggplot2::theme()] object.
 #' @export
 #' @examples
-#' ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+#' # Not printed in examples: rendering requires the Red Hat/Crimson Pro
+#' # brand fonts to be installed as system fonts (see UW-BRAND-README.md).
+#' p1 <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
 #'   ggplot2::geom_point(color = "white") +
 #'   theme_uw_dark()
 #'
-#' ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+#' p2 <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
 #'   ggplot2::geom_point(color = "white") +
 #'   theme_uw_dark(style = "red")
 theme_uw_dark <- function(

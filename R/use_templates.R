@@ -83,7 +83,7 @@ copy_templates <- function(type, path, overwrite) {
     if (file.exists(dest) && !overwrite) {
       message(
         "Skipping ", basename(src),
-        " — already exists (use overwrite = TRUE to replace)."
+        " - already exists (use overwrite = TRUE to replace)."
       )
       next
     }

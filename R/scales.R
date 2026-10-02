@@ -7,7 +7,7 @@
 #' @inheritParams ggplot2::scale_color_manual
 #' @export
 #' @examples
-#' ggplot2::ggplot(mpg, ggplot2::aes(displ, hwy, color = drv)) +
+#' p <- ggplot2::ggplot(ggplot2::mpg, ggplot2::aes(displ, hwy, color = drv)) +
 #'   ggplot2::geom_point() +
 #'   scale_color_uw()
 scale_color_uw <- function(...) {
@@ -25,7 +25,7 @@ scale_colour_uw <- scale_color_uw
 #' @inheritParams ggplot2::scale_fill_manual
 #' @export
 #' @examples
-#' ggplot2::ggplot(mpg, ggplot2::aes(class, fill = class)) +
+#' p <- ggplot2::ggplot(ggplot2::mpg, ggplot2::aes(class, fill = class)) +
 #'   ggplot2::geom_bar() +
 #'   scale_fill_uw()
 scale_fill_uw <- function(...) {
@@ -43,7 +43,7 @@ scale_fill_uw <- function(...) {
 #' @inheritParams ggplot2::scale_color_gradient
 #' @export
 #' @examples
-#' ggplot2::ggplot(faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
+#' p <- ggplot2::ggplot(ggplot2::faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
 #'   ggplot2::geom_tile() +
 #'   scale_fill_uw_c()
 scale_color_uw_c <- function(
@@ -79,7 +79,9 @@ scale_fill_uw_c <- function(
 #' @inheritParams ggplot2::scale_color_manual
 #' @export
 #' @examples
-#' ggplot2::ggplot(mpg, ggplot2::aes(displ, hwy, color = drv)) +
+#' # Not printed: rendering requires the Red Hat/Crimson Pro brand fonts to
+#' # be installed as system fonts (see UW-BRAND-README.md).
+#' p <- ggplot2::ggplot(ggplot2::mpg, ggplot2::aes(displ, hwy, color = drv)) +
 #'   ggplot2::geom_point() +
 #'   scale_color_uw_dark() +
 #'   theme_uw_dark()
@@ -108,7 +110,9 @@ scale_fill_uw_dark <- function(...) {
 #' @inheritParams ggplot2::scale_color_gradient
 #' @export
 #' @examples
-#' ggplot2::ggplot(faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
+#' # Not printed: rendering requires the Red Hat/Crimson Pro brand fonts to
+#' # be installed as system fonts (see UW-BRAND-README.md).
+#' p <- ggplot2::ggplot(ggplot2::faithfuld, ggplot2::aes(waiting, eruptions, fill = density)) +
 #'   ggplot2::geom_tile() +
 #'   scale_fill_uw_dark_c() +
 #'   theme_uw_dark(grid = "none")
